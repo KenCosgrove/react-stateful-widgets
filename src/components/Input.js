@@ -34,12 +34,13 @@ STEP 6:
   We need to add an extra prop to the input element like so: value={inputValue}
 */
 
-import React from 'react'; /* STEP 0 */
+import React, { useState } from "react"; /* STEP 0 */
 
 export default function Input() {
   /* STEP 1 */
+  const [inputValue, setInputValue] = useState("");
 
-  const changeInput = evt => {
+  const changeInput = (evt) => {
     // When the input changes, its whole value can be found inside the event object.
     // Log out the synthetic event object 'evt' and see for yourself.
     const { value } = evt.target;
@@ -48,20 +49,21 @@ export default function Input() {
   };
   const reset = () => {
     /* STEP 5 */
+    setInputValue("");
   };
 
   const style = {
-    fontSize: '1.5em',
-    marginBottom: '0.3em',
-    color: 'royalblue', /* STEP 2 */
+    fontSize: "1.5em",
+    marginBottom: "0.3em",
+    color: inputValue > 10 ? "crimson" : "royalblue" /* STEP 2 */,
   };
 
   return (
-    <div className='widget-input container'>
+    <div className="widget-input container">
       <h2>Input</h2>
-      <div style={style}></div> {/* STEP 3 */}
+      <div style={style}></div> {inputValue}
       <div>
-        <input type='text' onChange={changeInput} /> {/* STEP 6 */}
+        <input type="text" onChange={changeInput} /> {inputValue}
         <button onClick={reset}>Reset</button>
       </div>
     </div>
